@@ -27,6 +27,15 @@ public abstract class Screen {
             screenState = ScreenState.ReadyToExit;
         }
     }
+    public WelcomeScreen(){
+        super();
+    }
+
+    @Override
+    public void show(){
+        System.out.println(ConsoleColors.ANSI_CLEAR);
+        System.out.println("This is the Welcome Screen!");
+    }
 
     // override to have a screen reset its stuff on a cache hit
     public void reset() {
@@ -56,6 +65,8 @@ public abstract class Screen {
     }
 
     protected void handleInput() {
+        Game.getInstance().getInput().getString("Press Enter to continue.");
+
         while(screenState == ScreenState.Showing) {
             MenuItem selected = menu.getSelectedItemFromUser(Game.getInstance().getInput());
 
